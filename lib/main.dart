@@ -78,7 +78,6 @@ class _LotteryScreenState extends State<LotteryScreen> {
       });
       return;
     }
-
     setState(() {
       int randomIndex = Random().nextInt(availableRewards.length);
       Map<String, String> chosen = availableRewards.removeAt(randomIndex);
@@ -99,10 +98,10 @@ class _LotteryScreenState extends State<LotteryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[900],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Text("동작 랜덤 뽑기"),
-        backgroundColor: Colors.brown[800],
+        backgroundColor: Colors.blueGrey,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -117,7 +116,10 @@ class _LotteryScreenState extends State<LotteryScreen> {
             child: Text(
               result,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey),
             ),
           ),
           SizedBox(height: 20),
@@ -126,11 +128,14 @@ class _LotteryScreenState extends State<LotteryScreen> {
             children: [
               ElevatedButton(
                 onPressed: drawLottery,
-                child: Text("뽑기 시작"),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                child: Text("뽑기 시작", style: TextStyle(color: Colors.white)),
               ),
               ElevatedButton(
                 onPressed: resetLottery,
-                child: Text("초기화"),
+                style:
+                    ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
+                child: Text("초기화", style: TextStyle(color: Colors.white)),
               ),
             ],
           ),
