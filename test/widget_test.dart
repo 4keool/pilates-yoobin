@@ -11,20 +11,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pilates/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('초기 화면에 안내 메시지가 표시되는지 테스트', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(LotteryApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that our initial message is displayed
+    expect(find.text('필라테스 동작을 랜덤으로 뽑아보세요~!'), findsOneWidget);
   });
 }
