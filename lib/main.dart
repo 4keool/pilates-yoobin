@@ -21,51 +21,78 @@ class LotteryScreen extends StatefulWidget {
 }
 
 class _LotteryScreenState extends State<LotteryScreen> {
-  List<String> rewards = [
-    "PELVIC MOVEMENT\nPage 12",
-    "BRIDGE\nPage 14",
-    "SHOULDER BRIDGE\nPage 16",
-    "EXTENSION\nPage 18",
-    "QUADRUPED\nPage 20",
-    "ARM CIRCLE\nPage 22",
-    "OPENING\nPage 25",
-    "CORE EXERCISE TABLETOP\nPage 27",
-    "CORE EXERCISE FROG POSITION\nPage 30",
-    "CORE EXERCISE PLANK\nPage 32",
-    "HUNDRED\nPage 34",
-    "SINGLE LEG STRETCH\nPage 36",
-    "DOUBLE LEG STRETCH\nPage 38",
-    "CRISS CROSS\nPage 40",
-    "SINGLE LEG CIRCLE\nPage 42",
-    "SPINE STRETCH FORWARD\nPage 44",
-    "ROLL UP\nPage 46",
-    "SCISSORS\nPage 48",
-    "SIDE BRIDGE\nPage 50",
-    "ROLLING LIKE A BALL\nPage 51",
-    "SEAL\nPage 53",
-    "OPEN LEG ROCKER\nPage 55",
-    "TEASER\nPage 57",
-    "SWIMMING\nPage 59",
-    "SWAN\nPage 61",
-    "LEG EXTENSION\nPage 63",
-    "FROG SQUEEZE\nPage 65",
-    "MERMAID\nPage 67",
-    "SAW\nPage 69",
-    "THORACIC ROTATION\nPage 71",
-    "JACK KNIFE\nPage 73",
-    "HIP CIRCLE\nPage 75",
-    "KNEELING SIDE KICK\nPage 77",
-    "SIDE LEG FRONT&BACK\nPage 79",
-    "SIDE LEG UP&DOWN\nPage 81",
-    "SIDE LEG CLAM\nPage 83"
+  List<Map<String, String>> allRewards = [
+    {"name": "PELVIC MOVEMENT", "page": "12"},
+    {"name": "BRIDGE", "page": "14"},
+    {"name": "SHOULDER BRIDGE", "page": "16"},
+    {"name": "EXTENSION", "page": "18"},
+    {"name": "QUADRUPED", "page": "20"},
+    {"name": "ARM CIRCLE", "page": "22"},
+    {"name": "OPENING", "page": "25"},
+    {"name": "CORE EXERCISE-TABLETOP", "page": "27"},
+    {"name": "CORE EXERCISE-FROG POSITION", "page": "30"},
+    {"name": "CORE EXERCISE-PLANK", "page": "32"},
+    {"name": "HUNDRED", "page": "34"},
+    {"name": "SINGLE LEG STRETCH", "page": "36"},
+    {"name": "DOUBLE LEG STRETCH", "page": "38"},
+    {"name": "CRISS CROSS", "page": "40"},
+    {"name": "SINGLE LEG CIRCLE", "page": "42"},
+    {"name": "SPINE STRETCH FORWARD", "page": "44"},
+    {"name": "ROLL UP", "page": "46"},
+    {"name": "SCISSORS", "page": "48"},
+    {"name": "SIDE BRIDGE", "page": "50"},
+    {"name": "ROLLING LIKE A BALL", "page": "51"},
+    {"name": "SEAL", "page": "53"},
+    {"name": "OPEN LEG ROCKER", "page": "55"},
+    {"name": "TEASER", "page": "57"},
+    {"name": "SWIMMING", "page": "59"},
+    {"name": "SWAN", "page": "61"},
+    {"name": "LEG EXTENSION", "page": "63"},
+    {"name": "FROG SQUEEZE", "page": "65"},
+    {"name": "MERMAID", "page": "67"},
+    {"name": "SAW", "page": "69"},
+    {"name": "THORACIC ROTATION", "page": "71"},
+    {"name": "JACK KNIFE", "page": "73"},
+    {"name": "HIP CIRCLE", "page": "75"},
+    {"name": "KNEELING SIDE KICK", "page": "77"},
+    {"name": "SIDE LEG FRONT&BACK", "page": "79"},
+    {"name": "SIDE LEG UP&DOWN", "page": "81"},
+    {"name": "SIDE LEG-CLAM", "page": "83"}
   ];
 
-  String result = "필라테스 동작을 랜덤으로 뽑아보세요~!";
+  List<Map<String, String>> availableRewards = [];
+  List<Map<String, String>> selectedRewards = [];
+  String result = "하루에 한 번! 행운의 기회를 잡으세요!";
+  bool showList = false;
+
+  @override
+  void initState() {
+    super.initState();
+    availableRewards = List.from(allRewards);
+  }
 
   void drawLottery() {
+    if (availableRewards.isEmpty) {
+      setState(() {
+        result = "모든 항목이 선택되었습니다!";
+      });
+      return;
+    }
+
     setState(() {
-      int randomIndex = Random().nextInt(rewards.length);
-      result = rewards[randomIndex];
+      int randomIndex = Random().nextInt(availableRewards.length);
+      Map<String, String> chosen = availableRewards.removeAt(randomIndex);
+      selectedRewards.add(chosen);
+      result = "${chosen["name"]} - Page ${chosen["page"]}";
+    });
+  }
+
+  void resetLottery() {
+    setState(() {
+      availableRewards = List.from(allRewards);
+      selectedRewards.clear();
+      result = "하루에 한 번! 행운의 기회를 잡으세요!";
+      showList = false;
     });
   }
 
@@ -74,36 +101,77 @@ class _LotteryScreenState extends State<LotteryScreen> {
     return Scaffold(
       backgroundColor: Colors.brown[900],
       appBar: AppBar(
-        title: Text("동작 랜덤 뽑기"),
+        title: Text("랜덤 뽑기 이벤트"),
         backgroundColor: Colors.brown[800],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: EdgeInsets.all(20),
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(
+              result,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: drawLottery,
+                child: Text("뽑기 시작"),
+              ),
+              ElevatedButton(
+                onPressed: resetLottery,
+                child: Text("초기화"),
+              ),
+            ],
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                showList = !showList;
+              });
+            },
+            child: Text(showList ? "리스트 숨기기" : "리스트 보기"),
+          ),
+          if (showList)
             Container(
-              padding: EdgeInsets.all(20),
+              height: 200,
+              margin: EdgeInsets.all(10),
+              padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Text(
-                result,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: allRewards.map((item) {
+                    bool isSelected = selectedRewards.contains(item);
+                    return Text(
+                      isSelected
+                          ? "\u0336${item["name"] ?? ''}"
+                          : item["name"] ?? '',
+                      style: TextStyle(
+                        fontSize: 16,
+                        decoration:
+                            isSelected ? TextDecoration.lineThrough : null,
+                      ),
+                    );
+                  }).toList(),
+                ),
               ),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: drawLottery,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-              ),
-              child: Text("뽑기", style: TextStyle(fontSize: 18)),
-            ),
-          ],
-        ),
+        ],
       ),
     );
   }
