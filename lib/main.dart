@@ -2,13 +2,15 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(LotteryApp());
+  runApp(const LotteryApp());
 }
 
 class LotteryApp extends StatelessWidget {
+  const LotteryApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LotteryScreen(),
     );
@@ -16,12 +18,14 @@ class LotteryApp extends StatelessWidget {
 }
 
 class LotteryScreen extends StatefulWidget {
+  const LotteryScreen({super.key});
+
   @override
   _LotteryScreenState createState() => _LotteryScreenState();
 }
 
 class _LotteryScreenState extends State<LotteryScreen> {
-  List<Map<String, String>> allRewards = [
+  final List<Map<String, String>> allRewards = [
     {"name": "PELVIC MOVEMENT", "page": "12"},
     {"name": "BRIDGE", "page": "14"},
     {"name": "SHOULDER BRIDGE", "page": "16"},
@@ -60,9 +64,9 @@ class _LotteryScreenState extends State<LotteryScreen> {
     {"name": "SIDE LEG-CLAM", "page": "83"}
   ];
 
-  List<Map<String, String>> availableRewards = [];
-  List<Map<String, String>> selectedRewards = [];
-  String result = "필라테스 동작을 랜덤으로 뽑아보세요~!";
+  late List<Map<String, String>> availableRewards;
+  final List<Map<String, String>> selectedRewards = [];
+  String result = "필라테스 동작을 랜덤으로\n뽑아보세요~!";
   bool showList = false;
 
   @override
@@ -79,10 +83,10 @@ class _LotteryScreenState extends State<LotteryScreen> {
       return;
     }
     setState(() {
-      int randomIndex = Random().nextInt(availableRewards.length);
-      Map<String, String> chosen = availableRewards.removeAt(randomIndex);
+      final randomIndex = Random().nextInt(availableRewards.length);
+      final chosen = availableRewards.removeAt(randomIndex);
       selectedRewards.add(chosen);
-      result = "${chosen["name"]} - Page ${chosen["page"]}";
+      result = "${chosen["name"]}\nPage ${chosen["page"]}";
     });
   }
 
@@ -90,7 +94,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
     setState(() {
       availableRewards = List.from(allRewards);
       selectedRewards.clear();
-      result = "필라테스 동작을 랜덤으로 뽑아보세요~!";
+      result = "필라테스 동작을 랜덤으로\n뽑아보세요~!";
       showList = false;
     });
   }
@@ -99,16 +103,12 @@ class _LotteryScreenState extends State<LotteryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        title: Text("동작 랜덤 뽑기"),
-        backgroundColor: Colors.blueGrey,
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.all(20),
-            margin: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.all(20),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -116,43 +116,39 @@ class _LotteryScreenState extends State<LotteryScreen> {
             child: Text(
               result,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.blueGrey),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ElevatedButton(
                 onPressed: drawLottery,
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                child: Text("뽑기 시작", style: TextStyle(color: Colors.white)),
+                child: const Text("뽑기", style: TextStyle(color: Colors.white)),
               ),
               ElevatedButton(
                 onPressed: resetLottery,
                 style:
                     ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
-                child: Text("초기화", style: TextStyle(color: Colors.white)),
+                child: const Text("초기화", style: TextStyle(color: Colors.white)),
               ),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {
-              setState(() {
-                showList = !showList;
-              });
-            },
+            onPressed: () => setState(() => showList = !showList),
             child: Text(showList ? "리스트 숨기기" : "리스트 보기"),
           ),
           if (showList)
             Container(
               height: 200,
-              margin: EdgeInsets.all(10),
-              padding: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -161,7 +157,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: allRewards.map((item) {
-                    bool isSelected = selectedRewards.contains(item);
+                    final isSelected = selectedRewards.contains(item);
                     return Text(
                       isSelected
                           ? "\u0336${item["name"] ?? ''}"
