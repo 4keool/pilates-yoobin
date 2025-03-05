@@ -62,7 +62,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
 
   List<Map<String, String>> availableRewards = [];
   List<Map<String, String>> selectedRewards = [];
-  String result = "하루에 한 번! 행운의 기회를 잡으세요!";
+  String result = "필라테스 동작을 랜덤으로 뽑아보세요~!";
   bool showList = false;
 
   @override
@@ -91,7 +91,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
     setState(() {
       availableRewards = List.from(allRewards);
       selectedRewards.clear();
-      result = "하루에 한 번! 행운의 기회를 잡으세요!";
+      result = "필라테스 동작을 랜덤으로 뽑아보세요~!";
       showList = false;
     });
   }
@@ -101,7 +101,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
     return Scaffold(
       backgroundColor: Colors.brown[900],
       appBar: AppBar(
-        title: Text("랜덤 뽑기 이벤트"),
+        title: Text("동작 랜덤 뽑기"),
         backgroundColor: Colors.brown[800],
       ),
       body: Column(
