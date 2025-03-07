@@ -54,7 +54,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
     {"name": "LEG EXTENSION", "page": "63"},
     {"name": "FROG SQUEEZE", "page": "65"},
     {"name": "MERMAID", "page": "67"},
-    {"name": "SAW", "page": "69"},
+    {"name": "SWAN", "page": "69"},
     {"name": "THORACIC ROTATION", "page": "71"},
     {"name": "JACK KNIFE", "page": "73"},
     {"name": "HIP CIRCLE", "page": "75"},
