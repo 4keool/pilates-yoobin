@@ -1,0 +1,9 @@
+{
+  "name": "pilates-yoobin",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "flutter build web",
+    "deploy": "firebase deploy"
+  }
+} 
