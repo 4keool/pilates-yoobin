@@ -66,7 +66,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
 
   late List<Map<String, String>> availableRewards;
   final List<Map<String, String>> selectedRewards = [];
-  String result = "필라테스 동작을 랜덤으로\n뽑아보세요~!";
+  String result = "배포 테스트 동작을 랜덤으로\n뽑아보세요~!";
   bool showList = false;
 
   @override
@@ -94,7 +94,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
     setState(() {
       availableRewards = List.from(allRewards);
       selectedRewards.clear();
-      result = "필라테스 동작을 랜덤으로\n뽑아보세요~!";
+      result = "배포 테스트 동작을 랜덤으로\n뽑아보세요~!";
       showList = false;
     });
   }
