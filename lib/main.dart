@@ -25,6 +25,8 @@ class LotteryScreen extends StatefulWidget {
 }
 
 class _LotteryScreenState extends State<LotteryScreen> {
+  static const String DEFAULT_MESSAGE = "필라테스 동작을 랜덤으로\n뽑아보세요~!";
+
   final List<Map<String, String>> allRewards = [
     {"name": "PELVIC MOVEMENT", "page": "12"},
     {"name": "BRIDGE", "page": "14"},
@@ -66,7 +68,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
 
   late List<Map<String, String>> availableRewards;
   final List<Map<String, String>> selectedRewards = [];
-  String result = "배포 테스트 동작을 랜덤으로\n뽑아보세요~!";
+  String result = DEFAULT_MESSAGE;
   bool showList = false;
 
   @override
@@ -94,7 +96,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
     setState(() {
       availableRewards = List.from(allRewards);
       selectedRewards.clear();
-      result = "배포 테스트 동작을 랜덤으로\n뽑아보세요~!";
+      result = DEFAULT_MESSAGE;
       showList = false;
     });
   }
