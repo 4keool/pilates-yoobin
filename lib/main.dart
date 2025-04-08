@@ -25,9 +25,11 @@ class LotteryScreen extends StatefulWidget {
 }
 
 class _LotteryScreenState extends State<LotteryScreen> {
+  // 상수 정의
   static const String DEFAULT_MESSAGE = "필라테스 동작을 랜덤으로\n뽑아보세요~!";
+  static const String ALL_SELECTED_MESSAGE = "모든 항목이 선택되었습니다!";
 
-  final List<Map<String, String>> allRewards = [
+  final List<Map<String, String>> bodyweightExercises = [
     {"name": "PELVIC MOVEMENT", "page": "12"},
     {"name": "BRIDGE", "page": "14"},
     {"name": "SHOULDER BRIDGE", "page": "16"},
@@ -66,21 +68,38 @@ class _LotteryScreenState extends State<LotteryScreen> {
     {"name": "SIDE LEG-CLAM", "page": "83"}
   ];
 
+  final List<Map<String, String>> equipmentExercises = [
+    {"name": "REFORMER EXERCISE 1", "page": "80"},
+    {"name": "CADILLAC EXERCISE 1", "page": "90"},
+  ];
+
+  late List<Map<String, String>> allRewards;
   late List<Map<String, String>> availableRewards;
   final List<Map<String, String>> selectedRewards = [];
-  String result = DEFAULT_MESSAGE;
+  String result = DEFAULT_MESSAGE; // 초기값 설정
   bool showList = false;
+  bool isBodyweight = true; // 현재 선택된 운동 타입 (true: 맨몸, false: 기구)
 
   @override
   void initState() {
     super.initState();
+    allRewards = List.from(bodyweightExercises); // 초기값은 맨몸 운동
     availableRewards = List.from(allRewards);
+  }
+
+  void toggleExerciseType() {
+    setState(() {
+      isBodyweight = !isBodyweight;
+      allRewards =
+          List.from(isBodyweight ? bodyweightExercises : equipmentExercises);
+      resetLottery();
+    });
   }
 
   void drawLottery() {
     if (availableRewards.isEmpty) {
       setState(() {
-        result = "모든 항목이 선택되었습니다!";
+        result = ALL_SELECTED_MESSAGE;
       });
       return;
     }
@@ -96,7 +115,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
     setState(() {
       availableRewards = List.from(allRewards);
       selectedRewards.clear();
-      result = DEFAULT_MESSAGE;
+      result = DEFAULT_MESSAGE; // 상수 사용
       showList = false;
     });
   }
@@ -108,6 +127,18 @@ class _LotteryScreenState extends State<LotteryScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          ElevatedButton(
+            onPressed: toggleExerciseType,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: isBodyweight ? Colors.blue : Colors.purple,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            ),
+            child: Text(
+              isBodyweight ? "맨몸 운동" : "기구 운동",
+              style: const TextStyle(color: Colors.white, fontSize: 16),
+            ),
+          ),
+          const SizedBox(height: 20),
           Container(
             padding: const EdgeInsets.all(20),
             margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -119,9 +150,10 @@ class _LotteryScreenState extends State<LotteryScreen> {
               result,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.blueGrey,
+              ),
             ),
           ),
           const SizedBox(height: 20),
