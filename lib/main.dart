@@ -69,6 +69,8 @@ class _LotteryScreenState extends State<LotteryScreen> {
   ];
 
   final List<Map<String, String>> equipmentExercises = [
+    {"name": "REFORMER EXERCISE 1", "page": "80"},
+    {"name": "CADILLAC EXERCISE 1", "page": "90"},
     {"name": "예제1", "page": "1"},
     {"name": "예제2", "page": "2"},
     {"name": "예제3", "page": "3"},
@@ -84,32 +86,24 @@ class _LotteryScreenState extends State<LotteryScreen> {
   late List<Map<String, String>> allRewards;
   late List<Map<String, String>> availableRewards;
   final List<Map<String, String>> selectedRewards = [];
-  String result = DEFAULT_MESSAGE; // 초기값 설정
+  String result = DEFAULT_MESSAGE;
   bool showList = false;
-  bool isBodyweight = false; // 현재 선택된 운동 타입 (true: 맨몸, false: 기구)
-
-  bool get isDrawButtonEnabled => availableRewards.isNotEmpty; // 버튼 활성화 상태 확인
+  bool isBodyweight = false; // 초기값을 기구 운동으로 설정
 
   @override
   void initState() {
     super.initState();
-    allRewards = List.from(equipmentExercises); // 초기값은 맨몸 운동
+    allRewards = List.from(equipmentExercises); // 초기값은 기구 운동
     availableRewards = List.from(allRewards);
   }
 
-  void toggleExerciseType() {
-    setState(() {
-      isBodyweight = !isBodyweight;
-      allRewards =
-          List.from(isBodyweight ? bodyweightExercises : equipmentExercises);
-      resetLottery();
-    });
-  }
+  bool get isDrawButtonEnabled =>
+      availableRewards.isNotEmpty || result != ALL_SELECTED_MESSAGE;
 
   void drawLottery() {
     if (availableRewards.isEmpty) {
       setState(() {
-        result = ALL_SELECTED_MESSAGE; // 모든 항목이 선택되었을 때 메시지 표시
+        result = ALL_SELECTED_MESSAGE;
       });
       return;
     }
@@ -119,20 +113,26 @@ class _LotteryScreenState extends State<LotteryScreen> {
       final chosen = availableRewards.removeAt(randomIndex);
       selectedRewards.add(chosen);
       result = "${chosen["name"]}\nPage ${chosen["page"]}";
-
-      // 마지막 항목을 뽑은 직후 메시지 변경
-      if (availableRewards.isEmpty) {
-        result = ALL_SELECTED_MESSAGE;
-      }
     });
   }
 
   void resetLottery() {
     setState(() {
+      allRewards =
+          List.from(isBodyweight ? bodyweightExercises : equipmentExercises);
       availableRewards = List.from(allRewards);
       selectedRewards.clear();
       result = DEFAULT_MESSAGE;
       showList = false;
+    });
+  }
+
+  void toggleExerciseType() {
+    setState(() {
+      isBodyweight = !isBodyweight;
+      allRewards =
+          List.from(isBodyweight ? bodyweightExercises : equipmentExercises);
+      resetLottery();
     });
   }
 
@@ -177,12 +177,9 @@ class _LotteryScreenState extends State<LotteryScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ElevatedButton(
-                onPressed: isDrawButtonEnabled
-                    ? drawLottery
-                    : null, // 버튼 상태에 따라 활성화/비활성화
+                onPressed: isDrawButtonEnabled ? drawLottery : null,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
-                  // 비활성화 상태일 때의 스타일
                   disabledBackgroundColor: Colors.grey,
                 ),
                 child: const Text("뽑기", style: TextStyle(color: Colors.white)),
