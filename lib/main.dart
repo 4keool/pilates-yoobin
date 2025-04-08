@@ -69,8 +69,16 @@ class _LotteryScreenState extends State<LotteryScreen> {
   ];
 
   final List<Map<String, String>> equipmentExercises = [
-    {"name": "REFORMER EXERCISE 1", "page": "80"},
-    {"name": "CADILLAC EXERCISE 1", "page": "90"},
+    {"name": "예제1", "page": "1"},
+    {"name": "예제2", "page": "2"},
+    {"name": "예제3", "page": "3"},
+    {"name": "예제4", "page": "4"},
+    {"name": "예제5", "page": "5"},
+    {"name": "예제6", "page": "6"},
+    {"name": "예제7", "page": "7"},
+    {"name": "예제8", "page": "8"},
+    {"name": "예제9", "page": "9"},
+    {"name": "예제10", "page": "10"}
   ];
 
   late List<Map<String, String>> allRewards;
@@ -78,7 +86,9 @@ class _LotteryScreenState extends State<LotteryScreen> {
   final List<Map<String, String>> selectedRewards = [];
   String result = DEFAULT_MESSAGE; // 초기값 설정
   bool showList = false;
-  bool isBodyweight = true; // 현재 선택된 운동 타입 (true: 맨몸, false: 기구)
+  bool isBodyweight = false; // 현재 선택된 운동 타입 (true: 맨몸, false: 기구)
+
+  bool get isDrawButtonEnabled => availableRewards.isNotEmpty; // 버튼 활성화 상태 확인
 
   @override
   void initState() {
@@ -97,7 +107,8 @@ class _LotteryScreenState extends State<LotteryScreen> {
   }
 
   void drawLottery() {
-    if (availableRewards.isEmpty) {
+    if (!isDrawButtonEnabled) {
+      // 버튼 상태 체크
       setState(() {
         result = ALL_SELECTED_MESSAGE;
       });
@@ -115,7 +126,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
     setState(() {
       availableRewards = List.from(allRewards);
       selectedRewards.clear();
-      result = DEFAULT_MESSAGE; // 상수 사용
+      result = DEFAULT_MESSAGE;
       showList = false;
     });
   }
@@ -161,8 +172,14 @@ class _LotteryScreenState extends State<LotteryScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ElevatedButton(
-                onPressed: drawLottery,
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                onPressed: isDrawButtonEnabled
+                    ? drawLottery
+                    : null, // 버튼 상태에 따라 활성화/비활성화
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  // 비활성화 상태일 때의 스타일
+                  disabledBackgroundColor: Colors.grey,
+                ),
                 child: const Text("뽑기", style: TextStyle(color: Colors.white)),
               ),
               ElevatedButton(
