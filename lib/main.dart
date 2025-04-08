@@ -25,75 +25,75 @@ class LotteryScreen extends StatefulWidget {
 }
 
 class _LotteryScreenState extends State<LotteryScreen> {
-  // 상수 정의
   static const String DEFAULT_MESSAGE = "필라테스 동작을 랜덤으로\n뽑아보세요~!";
   static const String ALL_SELECTED_MESSAGE = "모든 항목이 선택되었습니다!";
 
-  final List<Map<String, String>> bodyweightExercises = [
-    {"name": "PELVIC MOVEMENT", "page": "12"},
-    {"name": "BRIDGE", "page": "14"},
-    {"name": "SHOULDER BRIDGE", "page": "16"},
-    {"name": "EXTENSION", "page": "18"},
-    {"name": "QUADRUPED", "page": "20"},
-    {"name": "ARM CIRCLE", "page": "22"},
-    {"name": "OPENING", "page": "25"},
-    {"name": "CORE EXERCISE-TABLETOP", "page": "27"},
-    {"name": "CORE EXERCISE-FROG POSITION", "page": "30"},
-    {"name": "CORE EXERCISE-PLANK", "page": "32"},
-    {"name": "HUNDRED", "page": "34"},
-    {"name": "SINGLE LEG STRETCH", "page": "36"},
-    {"name": "DOUBLE LEG STRETCH", "page": "38"},
-    {"name": "CRISS CROSS", "page": "40"},
-    {"name": "SINGLE LEG CIRCLE", "page": "42"},
-    {"name": "SPINE STRETCH FORWARD", "page": "44"},
-    {"name": "ROLL UP", "page": "46"},
-    {"name": "SCISSORS", "page": "48"},
-    {"name": "SIDE BRIDGE", "page": "50"},
-    {"name": "ROLLING LIKE A BALL", "page": "51"},
-    {"name": "SEAL", "page": "53"},
-    {"name": "OPEN LEG ROCKER", "page": "55"},
-    {"name": "TEASER", "page": "57"},
-    {"name": "SWIMMING", "page": "59"},
-    {"name": "SWAN", "page": "61"},
-    {"name": "LEG EXTENSION", "page": "63"},
-    {"name": "FROG SQUEEZE", "page": "65"},
-    {"name": "MERMAID", "page": "67"},
-    {"name": "SAW", "page": "69"},
-    {"name": "THORACIC ROTATION", "page": "71"},
-    {"name": "JACK KNIFE", "page": "73"},
-    {"name": "HIP CIRCLE", "page": "75"},
-    {"name": "KNEELING SIDE KICK", "page": "77"},
-    {"name": "SIDE LEG FRONT&BACK", "page": "79"},
-    {"name": "SIDE LEG UP&DOWN", "page": "81"},
-    {"name": "SIDE LEG-CLAM", "page": "83"}
-  ];
-
-  final List<Map<String, String>> equipmentExercises = [
-    {"name": "REFORMER EXERCISE 1", "page": "80"},
-    {"name": "CADILLAC EXERCISE 1", "page": "90"},
-    {"name": "예제1", "page": "1"},
-    {"name": "예제2", "page": "2"},
-    {"name": "예제3", "page": "3"},
-    {"name": "예제4", "page": "4"},
-    {"name": "예제5", "page": "5"},
-    {"name": "예제6", "page": "6"},
-    {"name": "예제7", "page": "7"},
-    {"name": "예제8", "page": "8"},
-    {"name": "예제9", "page": "9"},
-    {"name": "예제10", "page": "10"}
-  ];
+  final Map<String, List<Map<String, String>>> exercises = {
+    "맨몸 운동": [
+      {"name": "PELVIC MOVEMENT", "page": "12"},
+      {"name": "BRIDGE", "page": "14"},
+      {"name": "SHOULDER BRIDGE", "page": "16"},
+      {"name": "EXTENSION", "page": "18"},
+      {"name": "QUADRUPED", "page": "20"},
+      {"name": "ARM CIRCLE", "page": "22"},
+      {"name": "OPENING", "page": "25"},
+      {"name": "CORE EXERCISE-TABLETOP", "page": "27"},
+      {"name": "CORE EXERCISE-FROG POSITION", "page": "30"},
+      {"name": "CORE EXERCISE-PLANK", "page": "32"},
+      {"name": "HUNDRED", "page": "34"},
+      {"name": "SINGLE LEG STRETCH", "page": "36"},
+      {"name": "DOUBLE LEG STRETCH", "page": "38"},
+      {"name": "CRISS CROSS", "page": "40"},
+      {"name": "SINGLE LEG CIRCLE", "page": "42"},
+      {"name": "SPINE STRETCH FORWARD", "page": "44"},
+      {"name": "ROLL UP", "page": "46"},
+      {"name": "SCISSORS", "page": "48"},
+      {"name": "SIDE BRIDGE", "page": "50"},
+      {"name": "ROLLING LIKE A BALL", "page": "51"},
+      {"name": "SEAL", "page": "53"},
+      {"name": "OPEN LEG ROCKER", "page": "55"},
+      {"name": "TEASER", "page": "57"},
+      {"name": "SWIMMING", "page": "59"},
+      {"name": "SWAN", "page": "61"},
+      {"name": "LEG EXTENSION", "page": "63"},
+      {"name": "FROG SQUEEZE", "page": "65"},
+      {"name": "MERMAID", "page": "67"},
+      {"name": "SAW", "page": "69"},
+      {"name": "THORACIC ROTATION", "page": "71"},
+      {"name": "JACK KNIFE", "page": "73"},
+      {"name": "HIP CIRCLE", "page": "75"},
+      {"name": "KNEELING SIDE KICK", "page": "77"},
+      {"name": "SIDE LEG FRONT&BACK", "page": "79"},
+      {"name": "SIDE LEG UP&DOWN", "page": "81"},
+      {"name": "SIDE LEG-CLAM", "page": "83"}
+    ],
+    "기구 운동": [
+      {"name": "REFORMER EXERCISE 1", "page": "80"},
+      {"name": "CADILLAC EXERCISE 1", "page": "90"},
+      {"name": "예제1", "page": "1"},
+      {"name": "예제2", "page": "2"},
+      {"name": "예제3", "page": "3"},
+      {"name": "예제4", "page": "4"},
+      {"name": "예제5", "page": "5"},
+      {"name": "예제6", "page": "6"},
+      {"name": "예제7", "page": "7"},
+      {"name": "예제8", "page": "8"},
+      {"name": "예제9", "page": "9"},
+      {"name": "예제10", "page": "10"}
+    ],
+  };
 
   late List<Map<String, String>> allRewards;
   late List<Map<String, String>> availableRewards;
   final List<Map<String, String>> selectedRewards = [];
   String result = DEFAULT_MESSAGE;
   bool showList = false;
-  bool isBodyweight = false; // 초기값을 기구 운동으로 설정
+  String currentExerciseType = "기구 운동"; // 초기값을 기구 운동으로 설정
 
   @override
   void initState() {
     super.initState();
-    allRewards = List.from(equipmentExercises); // 초기값은 기구 운동
+    allRewards = List.from(exercises[currentExerciseType]!);
     availableRewards = List.from(allRewards);
   }
 
@@ -118,21 +118,19 @@ class _LotteryScreenState extends State<LotteryScreen> {
 
   void resetLottery() {
     setState(() {
-      allRewards =
-          List.from(isBodyweight ? bodyweightExercises : equipmentExercises);
+      allRewards = List.from(exercises[currentExerciseType]!);
       availableRewards = List.from(allRewards);
       selectedRewards.clear();
       result = DEFAULT_MESSAGE;
     });
   }
 
-  void toggleExerciseType() {
+  void changeExerciseType(String type) {
     setState(() {
-      isBodyweight = !isBodyweight;
-      allRewards =
-          List.from(isBodyweight ? bodyweightExercises : equipmentExercises);
+      currentExerciseType = type;
+      allRewards = List.from(exercises[currentExerciseType]!);
       resetLottery();
-      showList = false;
+      showList = false; // 운동 타입 변경 시 리스트 닫기
     });
   }
 
@@ -143,16 +141,23 @@ class _LotteryScreenState extends State<LotteryScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ElevatedButton(
-            onPressed: toggleExerciseType,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: isBodyweight ? Colors.blue : Colors.purple,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            ),
-            child: Text(
-              isBodyweight ? "맨몸 운동" : "기구 운동",
-              style: const TextStyle(color: Colors.white, fontSize: 16),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: exercises.keys.map((type) {
+              return ElevatedButton(
+                onPressed: () => changeExerciseType(type),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      currentExerciseType == type ? Colors.blue : Colors.grey,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                ),
+                child: Text(
+                  type,
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
+                ),
+              );
+            }).toList(),
           ),
           const SizedBox(height: 20),
           Container(
