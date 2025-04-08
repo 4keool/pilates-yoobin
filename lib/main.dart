@@ -123,7 +123,6 @@ class _LotteryScreenState extends State<LotteryScreen> {
       availableRewards = List.from(allRewards);
       selectedRewards.clear();
       result = DEFAULT_MESSAGE;
-      showList = false;
     });
   }
 
