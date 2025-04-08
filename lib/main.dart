@@ -132,6 +132,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
       allRewards =
           List.from(isBodyweight ? bodyweightExercises : equipmentExercises);
       resetLottery();
+      showList = false;
     });
   }
 
