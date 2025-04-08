@@ -93,7 +93,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
   @override
   void initState() {
     super.initState();
-    allRewards = List.from(bodyweightExercises); // 초기값은 맨몸 운동
+    allRewards = List.from(equipmentExercises); // 초기값은 맨몸 운동
     availableRewards = List.from(allRewards);
   }
 
@@ -107,18 +107,23 @@ class _LotteryScreenState extends State<LotteryScreen> {
   }
 
   void drawLottery() {
-    if (!isDrawButtonEnabled) {
-      // 버튼 상태 체크
+    if (availableRewards.isEmpty) {
       setState(() {
-        result = ALL_SELECTED_MESSAGE;
+        result = ALL_SELECTED_MESSAGE; // 모든 항목이 선택되었을 때 메시지 표시
       });
       return;
     }
+
     setState(() {
       final randomIndex = Random().nextInt(availableRewards.length);
       final chosen = availableRewards.removeAt(randomIndex);
       selectedRewards.add(chosen);
       result = "${chosen["name"]}\nPage ${chosen["page"]}";
+
+      // 마지막 항목을 뽑은 직후 메시지 변경
+      if (availableRewards.isEmpty) {
+        result = ALL_SELECTED_MESSAGE;
+      }
     });
   }
 
