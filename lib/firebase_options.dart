@@ -57,8 +57,8 @@ class DefaultFirebaseOptions {
     appId: '1:498026080295:web:f9a65cd762feb6719f4602',
     messagingSenderId: '498026080295',
     projectId: 'filates-yoobin',
-    authDomain: 'filates-yoobin.firebaseapp.com',
-    storageBucket: 'filates-yoobin.firebasestorage.app',
+    authDomain: 'pilates-yoobin.firebaseapp.com',
+    storageBucket: 'pilates-yoobin.firebasestorage.app',
     measurementId: 'G-C6WKBFM8S2',
   );
 }

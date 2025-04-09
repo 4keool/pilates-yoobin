@@ -208,21 +208,9 @@ class _LotteryScreenState extends State<LotteryScreen> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 ),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      type == "맨몸 운동"
-                          ? 'assets/pilates_icon.png'
-                          : 'assets/rehab pilates_icon.png',
-                      width: 24,
-                      height: 24,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      type,
-                      style: const TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ],
+                child: Text(
+                  type,
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               );
             }).toList(),
