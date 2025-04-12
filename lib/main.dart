@@ -67,7 +67,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
       {"name": "SIDE LEG UP&DOWN", "page": "81"},
       {"name": "SIDE LEG-CLAM", "page": "83"}
     ],
-    "기구 운동": [
+    "리포머 운동": [
       {"name": "Footwork-Toe/Arch/Heel position", "page": "6"},
       {"name": "Tendon stretch", "page": "8"},
       {"name": "HEELS UP & DOWN", "page": "9"},
@@ -123,9 +123,9 @@ class _LotteryScreenState extends State<LotteryScreen> {
       {"name": "EXTERNAL ROTATION", "page": "99"},
       {"name": "ADDUCTION", "page": "101"},
       {"name": "ABDUCTION-OVER HEAD", "page": "103"},
-      {"name": "LONG BOX-OVER HEAD PRESS (중복)", "page": "105"},
-      {"name": "STANDING-OVER HEAD PRESS (중복)", "page": "107"},
-      {"name": "QUADRUPED-BIRD DOG (중복)", "page": "109"},
+      {"name": "LONG BOX-OVER HEAD PRESS", "page": "105"},
+      {"name": "STANDING-OVER HEAD PRESS", "page": "107"},
+      {"name": "QUADRUPED-BIRD DOG", "page": "109"},
       {"name": "SIDE SPLITS", "page": "111"},
       {"name": "LATERAL STABILITY", "page": "113"},
       {"name": "CONTROL FRONT", "page": "115"},
@@ -137,6 +137,14 @@ class _LotteryScreenState extends State<LotteryScreen> {
       {"name": "HIP FLEXOR STRETCH", "page": "125"},
       {"name": "HIP HINGE", "page": "127"}
     ],
+    "캐딜락 운동": [
+      {"name": "Footwork-Toe/Arch/Heel position", "page": "6"},
+      {"name": "Tendon stretch", "page": "8"},
+      {"name": "HEELS UP & DOWN", "page": "9"},
+      {"name": "ONE LEG PRESS", "page": "10"},
+      {"name": "ONE LEG PRESS-DIAGONAL LEG", "page": "12"},
+      {"name": "ONE LEG PRESS-REACH & BAND", "page": "14"},
+    ]
   };
 
   late List<Map<String, String>> allRewards;
