@@ -192,7 +192,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
   final List<Map<String, String>> selectedRewards = [];
   String result = DEFAULT_MESSAGE;
   bool showList = false;
-  String currentExerciseType = "리포머 운동"; // 초기값을 리포머 운동으로 설정
+  String currentExerciseType = "캐딜락 운동";
 
   @override
   void initState() {
