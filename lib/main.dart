@@ -184,6 +184,49 @@ class _LotteryScreenState extends State<LotteryScreen> {
       {"name": "ADDUCTOR STRETCHING-TRAPEZE", "page": "80"},
       {"name": "ADDUCTOR STRETCHING-FUZZY", "page": "82"},
       {"name": "HAMSTRING STRETCHING", "page": "84"}
+    ],
+    "체어 운동": [
+      {"name": "Foot work - HEEL POSITION", "page": "3"},
+      {"name": "Foot work - TOE POSITION", "page": "5"},
+      {"name": "Foot work - FROG POSITION", "page": "7"},
+      {"name": "Foot work - UP&DOWN", "page": "9"},
+      {"name": "Foot work ONE LEG - HEEL POSITION", "page": "11"},
+      {"name": "Foot work ONE LEG - TOE POSITION", "page": "13"},
+      {"name": "HAMSTRING CURL", "page": "15"},
+      {"name": "CHAIR BRIDGE", "page": "17"},
+      {"name": "SIDE LEG EXERCISE - ADDUCTOR", "page": "19"},
+      {"name": "PEDAL UP & DOWN", "page": "21"},
+      {"name": "STANDING UP & DOWN", "page": "23"},
+      {"name": "STANDING LEG PRESS - FRONT", "page": "25"},
+      {"name": "STANDING LEG PRESS - SIDE", "page": "27"},
+      {"name": "LUNGE FRONT 1", "page": "29"},
+      {"name": "LUNGE FRONT 2", "page": "31"},
+      {"name": "LUNGE SIDE", "page": "33"},
+      {"name": "KNEE UP", "page": "35"},
+      {"name": "KNEE UP TWIST", "page": "37"},
+      {"name": "SCISSORS", "page": "39"},
+      {"name": "LEG CIRCLE", "page": "41"},
+      {"name": "DIPS", "page": "43"},
+      {"name": "SCAPULA MOVEMENT(stand)", "page": "45"},
+      {"name": "FROG FRONT", "page": "47"},
+      {"name": "PULL PIKE", "page": "49"},
+      {"name": "SIDE PULL PIKE", "page": "51"},
+      {"name": "SIDE PULL PIKE - ONE LEG", "page": "53"},
+      {"name": "SCAPULA MOVEMENT", "page": "55"},
+      {"name": "PEDAL PRESS", "page": "57"},
+      {"name": "PEDAL PRESS - ONE ARM", "page": "59"},
+      {"name": "THORACIC ROTATION", "page": "61"},
+      {"name": "TRICEPS PRESS ON THE BOX", "page": "63"},
+      {"name": "SPINE STRETCH FORWARD", "page": "65"},
+      {"name": "HIP FLEXION - SCAPULA MOVEMENT", "page": "67"},
+      {"name": "ROLL UP - TABLETOP", "page": "69"},
+      {"name": "ROLL UP - OBLIQUE", "page": "71"},
+      {"name": "ROLL UP - SIDE", "page": "73"},
+      {"name": "HAMSTRING STRETCH", "page": "75"},
+      {"name": "JACK KNIFE", "page": "77"},
+      {"name": "SWAN ON THE MAT", "page": "79"},
+      {"name": "SWAN ON THE CHAIR", "page": "81"},
+      {"name": "MERMAID", "page": "83"}
     ]
   };
 
@@ -192,7 +235,7 @@ class _LotteryScreenState extends State<LotteryScreen> {
   final List<Map<String, String>> selectedRewards = [];
   String result = DEFAULT_MESSAGE;
   bool showList = false;
-  String currentExerciseType = "캐딜락 운동";
+  String currentExerciseType = "체어 운동";
 
   @override
   void initState() {
